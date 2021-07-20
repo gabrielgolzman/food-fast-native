@@ -1,13 +1,29 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+
+import {
+   ProductCardWhole,
+   ProductCardPhoto,
+   ProductTitle,
+   ProductDescription,
+   ProductPrice,
+   Info,
+} from './ProductCard.styles';
 
 const ProductCard = ({ product }) => {
-   console.log(product);
+   const { idMenuOption, optionName, description, unitPrice, photo } = product;
    return (
-      <View>
-         <Text>Product Card</Text>
-         <Text>{product.optionName}</Text>
-      </View>
+      <ProductCardWhole elevation={5}>
+         <ProductCardPhoto
+            alt={optionName}
+            key={idMenuOption}
+            source={{ uri: photo }}
+         />
+         <Info>
+            <ProductTitle>{optionName}</ProductTitle>
+            <ProductDescription>{description}</ProductDescription>
+            <ProductPrice>${unitPrice}</ProductPrice>
+         </Info>
+      </ProductCardWhole>
    );
 };
 

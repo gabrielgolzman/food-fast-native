@@ -145,34 +145,37 @@
          "idMenuOption": 23,
          "optionName": "Café colombiano",
          "category": "café",
-         "description": "",
+         "description": "El mejor café colombiano que probarás jamás",
          "unitPrice": 150.0,
          "optionNumber": 1,
          "dateAvailableFrom": "2021-01-01",
          "dateAvailableUntil": "2021-06-30",
-         "isAvailable": true
+         "isAvailable": true,
+         "photo": "https://www.mdzol.com/u/fotografias/m/2021/4/8/f850x638-1041350_1118839_5050.jpg"
       },
       {
          "idMenuOption": 29,
          "optionName": "Milanesa completa con bebida",
          "category": "almuerzos",
-         "description": "",
+         "description": "Minuta ejecutiva típica con bebida a elección",
          "unitPrice": 1450.0,
          "optionNumber": 2,
          "dateAvailableFrom": "2021-10-25",
          "dateAvailableUntil": "2021-07-01",
-         "isAvailable": true
+         "isAvailable": true,
+         "photo": "https://cdn.needish.com/is-prod-deals/aiY6rmMwouS2sSt7-qEFDg/scale/900x600.jpg"
       },
       {
          "idMenuOption": 17,
          "optionName": "Lágrima",
          "category": "café",
-         "description": "",
+         "description": "Café típico con un tercio de café y resto de leche",
          "unitPrice": 175.49,
          "optionNumber": 3,
          "dateAvailableFrom": "2021-06-24",
          "dateAvailableUntil": "2021-07-02",
-         "isAvailable": true
+         "isAvailable": true,
+         "photo": "https://i.pinimg.com/originals/91/1a/fe/911afeef717a9325ed8965b33ea897e2.jpg"
       }
    ]
 }

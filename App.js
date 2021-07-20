@@ -1,17 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from 'styled-components';
 
-import RestaurantScreen from './src/screens/RestaurantScreen';
+import { theme } from './src/infrastructure/theme';
+
+import RestaurantScreen from './src/screens/RestaurantScreen/RestaurantScreen';
 import SafeArea from './src/utility/SafeArea';
 import Layout from './src/utility/Layout/Layout';
 
 export default function App() {
    return (
-      <SafeArea>
-         <Layout>
-            <RestaurantScreen />
-         </Layout>
-         <StatusBar style="auto" />
-      </SafeArea>
+      <ThemeProvider theme={theme}>
+         <SafeArea>
+            <Layout>
+               <RestaurantScreen />
+            </Layout>
+            <StatusBar style="auto" />
+         </SafeArea>
+      </ThemeProvider>
    );
 }

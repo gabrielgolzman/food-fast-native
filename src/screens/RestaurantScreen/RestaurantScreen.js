@@ -1,18 +1,13 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { View, FlatList, TouchableNativeFeedback } from 'react-native';
+import { View, TouchableNativeFeedback } from 'react-native';
 
-import ProductCard from '../components/restaurant/ProductCard/ProductCard';
-import { FadeInView } from '../utility/animations/FadeAnimation';
+import { RestaurantList } from './RestaurantScreen.styles';
 
-const RestaurantList = styled(FlatList).attrs({
-   contentContainerStyle: {
-      padding: 16,
-   },
-})``;
+import ProductCard from '../../components/restaurant/ProductCard/ProductCard';
+import { FadeInView } from '../../utility/animations/FadeAnimation';
 
 const RestaurantScreen = () => {
-   let mock = require('../../data/mock.json');
+   let mock = require('../../../data/mock.json');
    return (
       <RestaurantList
          data={mock.menuOptions}
@@ -20,7 +15,7 @@ const RestaurantScreen = () => {
             return (
                <TouchableNativeFeedback
                   onPress={() => {
-                     console.log(item.optionName + 'selected!');
+                     console.log(item.optionName + ' selected!');
                   }}
                   background={TouchableNativeFeedback.Ripple('#FFFFFF', true)}
                >
@@ -32,7 +27,7 @@ const RestaurantScreen = () => {
                </TouchableNativeFeedback>
             );
          }}
-         keyExtractor={(item) => item.id}
+         keyExtractor={(item) => item.optionName}
       />
    );
 };
