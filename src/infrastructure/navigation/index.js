@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import MenuNavigator from './MenuNavigator';
 
-const index = () => {
+export const MainNavigation = () => {
    return (
-      <View>
-         <Text></Text>
-      </View>
+      <NavigationContainer>
+         <MenuNavigator />
+      </NavigationContainer>
    );
 };
-
-export default index;

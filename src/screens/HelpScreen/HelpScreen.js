@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+
+import { Container } from './HelpScreen.styles';
 
 const HelpScreen = () => {
    return (
-      <View>
+      <Container>
          <Text>The Help Screen</Text>
-      </View>
+      </Container>
    );
 };
 

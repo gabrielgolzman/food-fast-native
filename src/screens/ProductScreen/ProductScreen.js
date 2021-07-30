@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
-const ProductScreen = () => {
+import { Container } from './ProductScreen.styles';
+
+const ProductScreen = ({ route }) => {
+   const { product } = route.params;
    return (
-      <View>
-         <Text>The Product Screen</Text>
-      </View>
+      <Container>
+         <Text>The Product Screen of {product.optionName}</Text>
+      </Container>
    );
 };
 
