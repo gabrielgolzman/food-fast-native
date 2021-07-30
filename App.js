@@ -4,17 +4,14 @@ import { ThemeProvider } from 'styled-components';
 
 import { theme } from './src/infrastructure/theme';
 
-import RestaurantScreen from './src/screens/RestaurantScreen/RestaurantScreen';
 import SafeArea from './src/utility/SafeArea';
-import Layout from './src/utility/Layout/Layout';
+import { MainNavigation } from './src/infrastructure/navigation';
 
 export default function App() {
    return (
       <ThemeProvider theme={theme}>
          <SafeArea>
-            <Layout>
-               <RestaurantScreen />
-            </Layout>
+            <MainNavigation />
             <StatusBar style="auto" />
          </SafeArea>
       </ThemeProvider>

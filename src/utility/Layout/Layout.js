@@ -8,14 +8,12 @@ import {
    Main,
 } from './Layout.styles';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, nav }) => {
    return (
       <Container>
          <HeaderImage>
-            <SettingsButton
-               onPress={() => console.log('Pressed the settings!')}
-            />
-            <HelpButton onPress={() => console.log('Help needed!')}>
+            <SettingsButton onPress={() => nav.navigate('settings')} />
+            <HelpButton onPress={() => nav.navigate('help')}>
                Solicitar ayuda al personal
             </HelpButton>
          </HeaderImage>
