@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, TouchableNativeFeedback } from 'react-native';
 
-import { RestaurantList } from './RestaurantScreen.styles';
+import { MenuList } from './MenuScreen.styles';
 
 import ProductCard from '../../components/restaurant/ProductCard/ProductCard';
 import { FadeInView } from '../../utility/animations/FadeAnimation';
 
-const RestaurantScreen = () => {
+const MenuScreen = () => {
    let mock = require('../../../data/mock.json');
    return (
-      <RestaurantList
+      <MenuList
          data={mock.menuOptions}
          renderItem={({ item }) => {
             return (
@@ -32,4 +32,4 @@ const RestaurantScreen = () => {
    );
 };
 
-export default RestaurantScreen;
+export default MenuScreen;
