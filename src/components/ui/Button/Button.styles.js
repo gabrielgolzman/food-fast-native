@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Button } from 'react-native-paper';
+import { Button, IconButton } from 'react-native-paper';
 
 export const HelpButton = styled(Button).attrs((props) => ({
    icon: 'bell-ring',
@@ -34,4 +34,17 @@ export const LargeButton = styled(Button).attrs((props) => ({
    z-index: 10;
    margin: ${(props) => props.theme.space[2]};
    height: 50px;
+`;
+
+export const GoBackButton = styled(IconButton).attrs((props) => ({
+   color: props.theme.colors.ui.bg,
+   icon: 'arrow-left-bold',
+   size: 30,
+}))`
+   width: 40px;
+   margin: ${(props) => props.theme.space[3]};
+   height: 40px;
+   background-color: ${(props) => props.theme.colors.ui.primary};
+   border-radius: 50px;
+   position: absolute;
 `;

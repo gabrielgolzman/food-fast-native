@@ -1,9 +1,29 @@
 import React from 'react';
-import { View } from 'react-native';
 
-const QuantityHandler = () => {
+import { MinusButton, Quantity, PlusButton } from './QuantityHandler.styles';
+const QuantityHandler = ({
+   currentQuantity,
+   onMinusPressed,
+   onPlusPressed,
+}) => {
+   const minusPressedHandler = () => {
+      currentQuantity--;
+      onMinusPressed(currentQuantity);
+   };
+   const plusPressedHandler = () => {
+      currentQuantity++;
+      onPlusPressed(currentQuantity);
+   };
+
    return (
-      <View style={{ backgroundColor: 'orange', width: 40, height: 30 }}></View>
+      <>
+         <MinusButton
+            disabled={currentQuantity === 1}
+            onPress={minusPressedHandler}
+         />
+         <Quantity>{currentQuantity}</Quantity>
+         <PlusButton onPress={plusPressedHandler} />
+      </>
    );
 };
 

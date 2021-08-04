@@ -1,14 +1,21 @@
 import styled from 'styled-components/native';
 import { Card, TextInput } from 'react-native-paper';
 
+import { colors } from '../../infrastructure/theme/colors';
+
 export const Container = styled.View`
    flex: 1;
    justify-content: flex-start;
    background-color: ${(props) => props.theme.colors.ui.bg};
 `;
 
-export const ProductCoverPhoto = styled(Card.Cover)`
+export const HeaderContainer = styled.View`
    height: 35%;
+   width: 100%;
+`;
+
+export const ProductCoverPhoto = styled(Card.Cover)`
+   height: 100%;
    width: 100%;
 `;
 
@@ -54,8 +61,17 @@ export const QuantityCard = styled(Card)`
    height: 20%;
 `;
 
-export const Clarifications = styled(TextInput)`
+export const Clarifications = styled(TextInput).attrs({
+   selectionColor: colors.ui.primary,
+   underlineColor: colors.ui.primary,
+   outlineColor: colors.ui.primary,
+   theme: {
+      colors: {
+         primary: colors.ui.primary,
+      },
+   },
+})`
    height: 50px;
-   background-color: ${(props) => props.theme.colors.ui.bg};
+   background-color: ${colors.ui.bg};
    width: 100%;
 `;
