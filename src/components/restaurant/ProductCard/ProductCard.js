@@ -9,10 +9,10 @@ import {
    Info,
 } from './ProductCard.styles';
 
-const ProductCard = ({ product, noElevation }) => {
+const ProductCard = ({ product }) => {
    const { idMenuOption, optionName, description, unitPrice, photo } = product;
    return (
-      <ProductCardWhole elevation={!noElevation ? 5 : 0}>
+      <ProductCardWhole elevation={5}>
          <ProductCardPhoto
             alt={optionName}
             key={idMenuOption}

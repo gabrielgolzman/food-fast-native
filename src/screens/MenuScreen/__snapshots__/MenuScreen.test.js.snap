@@ -107,7 +107,7 @@ exports[`renders the MenuScreen correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "orange",
+          "backgroundColor": "#F3A404",
           "borderColor": "transparent",
           "borderRadius": 20,
           "borderStyle": "solid",
