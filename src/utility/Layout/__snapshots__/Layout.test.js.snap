@@ -233,7 +233,9 @@ exports[`renders the Layout correctly 1`] = `
     style={
       Array [
         Object {
+          "alignItems": "center",
           "height": "70%",
+          "justifyContent": "flex-end",
         },
       ]
     }

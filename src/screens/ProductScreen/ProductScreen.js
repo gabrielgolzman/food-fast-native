@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import {
    Container,
@@ -14,6 +14,7 @@ import {
    QuantityCard,
    OptionsContainer,
 } from './ProductScreen.styles';
+import { OrdersContext } from '../../services/orders/orders.context';
 
 import Button from '../../components/ui/Button/Button';
 import QuantityHandler from '../../components/restaurant/QuantityHandler/QuantityHandler';
@@ -21,6 +22,7 @@ import QuantityHandler from '../../components/restaurant/QuantityHandler/Quantit
 const ProductScreen = ({ route, navigation }) => {
    const [currentQuantity, setCurrentQuantity] = useState(1);
    const [clarifications, setClarifications] = useState('');
+   const { addOrder } = useContext(OrdersContext);
 
    const { product } = route.params;
    const { idMenuOption, optionName, description, unitPrice, photo } = product;
@@ -30,6 +32,18 @@ const ProductScreen = ({ route, navigation }) => {
    };
    const plusPressedHandler = (quantity) => {
       setCurrentQuantity(quantity);
+   };
+
+   const orderCreationHandler = () => {
+      const partialPrice = currentQuantity * unitPrice;
+      addOrder({
+         optionName,
+         quantity: currentQuantity,
+         unitPrice,
+         partialPrice,
+         clarifications,
+      });
+      navigation.goBack();
    };
 
    return (
@@ -64,8 +78,8 @@ const ProductScreen = ({ route, navigation }) => {
                onChangeText={(text) => setClarifications(text)}
             />
 
-            <Button type="large" onPress={() => navigation.goBack()}>
-               Agregar producto ${unitPrice * currentQuantity}
+            <Button type="large" onPress={orderCreationHandler}>
+               Agregar producto ${+(unitPrice * currentQuantity).toFixed(2)}
             </Button>
          </OptionsContainer>
       </Container>

@@ -30,10 +30,29 @@ export const LargeButton = styled(Button).attrs((props) => ({
    border-radius: 20px;
    font-size: ${(props) => props.theme.fontSizes.body};
    justify-content: center;
-   width: 70%;
+   width: 80%;
    z-index: 10;
    margin: ${(props) => props.theme.space[2]};
    height: 50px;
+`;
+
+export const StickyButton = styled(Button).attrs((props) => ({
+   color: props.theme.colors.ui.primary,
+   mode: 'contained',
+   labelStyle: {
+      fontSize: 16,
+      color: 'white',
+   },
+}))`
+   border-radius: 20px;
+   position: absolute;
+   bottom: 10%;
+   align-items: center;
+   font-size: ${(props) => props.theme.fontSizes.body};
+   justify-content: center;
+   width: 75%;
+   z-index: 10;
+   height: 60px;
 `;
 
 export const GoBackButton = styled(IconButton).attrs((props) => ({

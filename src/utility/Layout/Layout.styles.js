@@ -29,4 +29,6 @@ export const SettingsButton = styled(IconButton).attrs((props) => ({
 
 export const Main = styled.View`
    height: 70%;
+   justify-content: flex-end;
+   align-items: center;
 `;

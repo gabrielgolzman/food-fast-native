@@ -1,12 +1,24 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { Container } from './HelpScreen.styles';
 
-const HelpScreen = () => {
+import Button from '../../components/ui/Button/Button';
+
+const HelpScreen = ({ navigation }) => {
    return (
       <Container>
-         <Text>The Help Screen</Text>
+         <Button type="goBack" onPress={() => navigation.goBack()} />
+         <View>
+            <Text
+               style={{
+                  position: 'absolute',
+                  marginTop: 50,
+               }}
+            >
+               The Help Screen
+            </Text>
+         </View>
       </Container>
    );
 };
