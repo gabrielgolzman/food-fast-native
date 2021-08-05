@@ -1,21 +1,17 @@
 import React from 'react';
 
-import {
-   Container,
-   HeaderImage,
-   SettingsButton,
-   HelpButton,
-   Main,
-} from './Layout.styles';
+import { Container, HeaderImage, SettingsButton, Main } from './Layout.styles';
+
+import Button from '../../components/ui/Button/Button';
 
 const Layout = ({ children, nav }) => {
    return (
       <Container>
          <HeaderImage>
             <SettingsButton onPress={() => nav.navigate('settings')} />
-            <HelpButton onPress={() => nav.navigate('help')}>
+            <Button type="help" onPress={() => nav.navigate('help')}>
                Solicitar ayuda al personal
-            </HelpButton>
+            </Button>
          </HeaderImage>
          <Main>{children}</Main>
       </Container>

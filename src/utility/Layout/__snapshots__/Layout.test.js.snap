@@ -107,7 +107,7 @@ exports[`renders the Layout correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "orange",
+          "backgroundColor": "#F3A404",
           "borderColor": "transparent",
           "borderRadius": 20,
           "borderStyle": "solid",
@@ -233,7 +233,9 @@ exports[`renders the Layout correctly 1`] = `
     style={
       Array [
         Object {
+          "alignItems": "center",
           "height": "70%",
+          "justifyContent": "flex-end",
         },
       ]
     }

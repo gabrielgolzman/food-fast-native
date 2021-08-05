@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { IconButton, Button } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 
 export const Container = styled.View`
    flex: 1;
@@ -19,32 +19,16 @@ export const HeaderImage = styled.ImageBackground.attrs({
    justify-content: space-between;
 `;
 
-export const SettingsButton = styled(IconButton).attrs({
+export const SettingsButton = styled(IconButton).attrs((props) => ({
    icon: 'cog',
    size: 35,
-   color: 'orange',
-})`
+   color: props.theme.colors.ui.primary,
+}))`
    z-index: 10;
-`;
-
-export const HelpButton = styled(Button).attrs({
-   icon: 'bell-ring',
-   color: 'orange',
-   mode: 'contained',
-   labelStyle: {
-      fontSize: 12,
-      color: 'white',
-   },
-})`
-   border-radius: 20px;
-   font-size: ${(props) => props.theme.fontSizes.caption};
-   justify-content: center;
-   width: 70%;
-   z-index: 10;
-   margin: ${(props) => props.theme.space[2]};
-   height: 40px;
 `;
 
 export const Main = styled.View`
    height: 70%;
+   justify-content: flex-end;
+   align-items: center;
 `;
