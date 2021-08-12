@@ -5,18 +5,26 @@ import {
    LargeButton,
    GoBackButton,
    StickyButton,
+   EditButton,
 } from './Button.styles';
 
-const Button = ({ children, type, onPress }) => {
+const Button = ({ children, type, onPress, variation }) => {
    switch (type) {
       case 'help':
          return <HelpButton onPress={onPress}>{children}</HelpButton>;
       case 'large':
-         return <LargeButton onPress={onPress}>{children}</LargeButton>;
+         return (
+            <LargeButton style={variation} onPress={onPress}>
+               {children}
+            </LargeButton>
+         );
+
       case 'goBack':
          return <GoBackButton onPress={onPress} />;
       case 'sticky':
          return <StickyButton onPress={onPress}>{children}</StickyButton>;
+      case 'edit':
+         return <EditButton onPress={onPress}>{children}</EditButton>;
       default:
          break;
    }

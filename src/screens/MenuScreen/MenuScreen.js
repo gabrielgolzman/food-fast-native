@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, TouchableNativeFeedback } from 'react-native';
 
 import { MenuList } from './MenuScreen.styles';
@@ -12,8 +12,7 @@ import Button from '../../components/ui/Button/Button';
 const MenuScreen = ({ navigation }) => {
    let mock = require('../../../data/mock.json');
 
-   const [partialTotal, setPartialTotal] = useState(0);
-   const { orders } = useContext(OrdersContext);
+   const { orders, total, setOrderTotal } = useContext(OrdersContext);
 
    useEffect(() => {
       if (orders.length !== 0) {
@@ -21,12 +20,14 @@ const MenuScreen = ({ navigation }) => {
             return order.partialPrice;
          });
          const amount = amountArray.reduce((cur, val) => cur + val);
-         setPartialTotal(amount);
+         setOrderTotal(amount);
       }
    }, [orders]);
 
-   const orderButton = partialTotal ? (
-      <Button type="sticky">Ver mi pedido ${+partialTotal.toFixed(2)}</Button>
+   const orderButton = total ? (
+      <Button onPress={() => navigation.navigate('summary')} type="sticky">
+         Ver mi pedido ${+total.toFixed(2)}
+      </Button>
    ) : null;
 
    return (

@@ -37,6 +37,7 @@ const ProductScreen = ({ route, navigation }) => {
    const orderCreationHandler = () => {
       const partialPrice = currentQuantity * unitPrice;
       addOrder({
+         id: Math.floor(Math.random() * (1000 + 1)).toString(),
          optionName,
          quantity: currentQuantity,
          unitPrice,
