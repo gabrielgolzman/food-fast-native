@@ -1,7 +1,8 @@
 export const colors = {
    ui: {
       primary: '#F3A404',
-      secondary: '#F1062E',
+      secondary: '#F10671',
       bg: '#FFFFFF',
+      line: '#707070',
    },
 };

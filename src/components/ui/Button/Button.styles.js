@@ -19,8 +19,42 @@ export const HelpButton = styled(Button).attrs((props) => ({
    height: 40px;
 `;
 
+export const EditButton = styled(Button).attrs((props) => ({
+   icon: 'pencil',
+   color: props.theme.colors.ui.primary,
+   mode: 'contained',
+   labelStyle: {
+      fontSize: 12,
+      color: 'white',
+   },
+}))`
+   border-radius: 20px;
+   font-size: ${(props) => props.theme.fontSizes.caption};
+   justify-content: center;
+   width: 40%;
+   z-index: 10;
+   height: 30px;
+`;
+
 export const LargeButton = styled(Button).attrs((props) => ({
    color: props.theme.colors.ui.primary,
+   mode: 'contained',
+   labelStyle: {
+      fontSize: 14,
+      color: 'white',
+   },
+}))`
+   border-radius: 20px;
+   font-size: ${(props) => props.theme.fontSizes.body};
+   justify-content: center;
+   width: 80%;
+   z-index: 10;
+   margin: ${(props) => props.theme.space[2]};
+   height: 50px;
+`;
+
+export const BackMenuButton = styled(Button).attrs((props) => ({
+   color: props.theme.colors.ui.secondary,
    mode: 'contained',
    labelStyle: {
       fontSize: 14,
