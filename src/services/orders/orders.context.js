@@ -14,9 +14,19 @@ export const OrdersContextProvider = ({ children }) => {
       setTotal(total);
    };
 
+   const setCheckbox = (id) => {
+      let tempOrders = orders.map((ord) => {
+         if (id === ord.id) {
+            return { ...ord, isChecked: !ord.isChecked };
+         }
+         return ord;
+      });
+      setOrders(tempOrders);
+   };
+
    return (
       <OrdersContext.Provider
-         value={{ orders, total, addOrder, setOrderTotal }}
+         value={{ orders, total, addOrder, setOrderTotal, setCheckbox }}
       >
          {children}
       </OrdersContext.Provider>

@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Checkbox } from 'react-native-paper';
 
 import { OrdersContext } from '../../services/orders/orders.context';
 import {
@@ -19,20 +20,46 @@ import Layout from '../../utility/Layout/Layout';
 import Button from '../../components/ui/Button/Button';
 
 const SummaryScreen = ({ navigation }) => {
-   const { orders, total } = useContext(OrdersContext);
+   const { orders, total, setCheckbox } = useContext(OrdersContext);
+   const [isEditing, setIsEditing] = useState(false);
+   const [oneIsChecked, setOneIsChecked] = useState(false);
+
+   const handleCheck = (id) => {
+      setCheckbox(id);
+   };
+
+   const onIsEditing = () => {
+      setIsEditing(!isEditing);
+   };
+
+   useEffect(() => {
+      setOneIsChecked(orders.some((ord) => ord.isChecked));
+   }, [orders]);
 
    return (
       <Layout nav={navigation}>
          <Container>
             <Header>
                <HeaderTitle>Mi Pedido</HeaderTitle>
-               <Button type="edit">Editar pedido</Button>
+               {!isEditing && (
+                  <Button type="edit" onPress={onIsEditing}>
+                     Editar pedido
+                  </Button>
+               )}
             </Header>
             <OrderList
                data={orders}
                renderItem={({ item }) => (
                   <OrderItem key={item.id} elevation={5}>
                      <OrderText>x{item.quantity}</OrderText>
+                     {isEditing && (
+                        <Checkbox
+                           color={colors.ui.primary}
+                           status={item.isChecked ? 'checked' : 'unchecked'}
+                           onPress={() => handleCheck(item.id)}
+                        />
+                     )}
+
                      <OrderText>{item.optionName}</OrderText>
                   </OrderItem>
                )}
@@ -56,9 +83,15 @@ const SummaryScreen = ({ navigation }) => {
                </Button>
             </GoToMenuContainer>
             <ContinueContainer>
-               <Button variation={{ width: '65%' }} type="large">
-                  Continuar
-               </Button>
+               {!oneIsChecked ? (
+                  <Button variation={{ width: '65%' }} type="large">
+                     Continuar
+                  </Button>
+               ) : (
+                  <Button variation={{ width: '65%' }} type="large">
+                     Eliminar seleccionados
+                  </Button>
+               )}
             </ContinueContainer>
          </Container>
       </Layout>
