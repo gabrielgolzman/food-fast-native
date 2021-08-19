@@ -20,7 +20,14 @@ import Layout from '../../utility/Layout/Layout';
 import Button from '../../components/ui/Button/Button';
 
 const SummaryScreen = ({ navigation }) => {
-   const { orders, total, setCheckbox } = useContext(OrdersContext);
+   const {
+      orders,
+      total,
+      setCheckbox,
+      deleteOrders,
+      setOrderTotal,
+      clearCheckboxes,
+   } = useContext(OrdersContext);
    const [isEditing, setIsEditing] = useState(false);
    const [oneIsChecked, setOneIsChecked] = useState(false);
 
@@ -30,6 +37,15 @@ const SummaryScreen = ({ navigation }) => {
 
    const onIsEditing = () => {
       setIsEditing(!isEditing);
+   };
+
+   const deleteSelectedOrders = () => {
+      const toDeleteOrders = orders.filter((ord) => ord.isChecked);
+      const newTotal = deleteOrders(toDeleteOrders);
+      setOrderTotal(newTotal);
+      if (newTotal === 0) {
+         navigation.navigate('menu');
+      }
    };
 
    useEffect(() => {
@@ -72,7 +88,10 @@ const SummaryScreen = ({ navigation }) => {
             </TotalOrder>
             <GoToMenuContainer>
                <Button
-                  onPress={() => navigation.navigate('menu')}
+                  onPress={() => {
+                     clearCheckboxes();
+                     navigation.navigate('menu');
+                  }}
                   variation={{
                      width: '65%',
                      backgroundColor: colors.ui.secondary,
@@ -88,7 +107,11 @@ const SummaryScreen = ({ navigation }) => {
                      Continuar
                   </Button>
                ) : (
-                  <Button variation={{ width: '65%' }} type="large">
+                  <Button
+                     onPress={deleteSelectedOrders}
+                     variation={{ width: '65%' }}
+                     type="large"
+                  >
                      Eliminar seleccionados
                   </Button>
                )}
