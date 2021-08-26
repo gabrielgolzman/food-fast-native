@@ -19,7 +19,7 @@ import Layout from '../../utility/Layout/Layout';
 import Button from '../../components/ui/Button/Button';
 
 const SummaryScreen = ({ navigation }) => {
-   const { orders, total } = useContext(OrdersContext);
+   const { orders, total, toggleCooking } = useContext(OrdersContext);
 
    return (
       <Layout nav={navigation}>
@@ -56,7 +56,14 @@ const SummaryScreen = ({ navigation }) => {
                </Button>
             </GoToMenuContainer>
             <ContinueContainer>
-               <Button variation={{ width: '65%' }} type="large">
+               <Button
+                  variation={{ width: '65%' }}
+                  type="large"
+                  onPress={() => {
+                     toggleCooking();
+                     return navigation.navigate('waiting');
+                  }}
+               >
                   Continuar
                </Button>
             </ContinueContainer>
