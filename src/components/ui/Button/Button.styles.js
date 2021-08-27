@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
 import { Button, IconButton } from 'react-native-paper';
 
-export const HelpButton = styled(Button).attrs((props) => ({
-   icon: 'bell-ring',
+export const IconAndButton = styled(Button).attrs((props) => ({
    color: props.theme.colors.ui.primary,
    mode: 'contained',
    labelStyle: {
@@ -17,6 +16,27 @@ export const HelpButton = styled(Button).attrs((props) => ({
    z-index: 10;
    margin: ${(props) => props.theme.space[2]};
    height: 40px;
+`;
+
+export const MainButton = styled(Button).attrs((props) => ({
+   color: props.theme.colors.ui.primary,
+   mode: 'contained',
+   labelStyle: {
+      fontSize: 18,
+      color: 'white',
+   },
+}))`
+   border-radius: 20px;
+   font-size: ${(props) => props.theme.fontSizes.body};
+   justify-content: space-around;
+   font-weight: ${(props) => props.theme.fontWeights.bold}
+   align-items: center;
+   display: flex;
+   flex-direction: row;
+   width: 60%;
+   z-index: 10;
+   margin: ${(props) => props.theme.space[5]};
+   height: 50px;
 `;
 
 export const EditButton = styled(Button).attrs((props) => ({
