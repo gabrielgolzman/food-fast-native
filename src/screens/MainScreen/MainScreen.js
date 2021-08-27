@@ -9,7 +9,11 @@ const MainScreen = ({ navigation }) => {
    return (
       <Layout clean>
          <Main>
-            <Button type="main" icon="email-outline">
+            <Button
+               type="main"
+               icon="email-outline"
+               onPress={() => navigation.navigate('reserve')}
+            >
                Pedir reserva
             </Button>
             <Button

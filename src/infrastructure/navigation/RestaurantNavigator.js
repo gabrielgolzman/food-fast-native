@@ -10,20 +10,25 @@ import SettingsScreen from '../../screens/SettingsScreen/SettingsScreen';
 import HelpScreen from '../../screens/HelpScreen/HelpScreen';
 import SummaryScreen from '../../screens/SummaryScreen/SummaryScreen';
 import WaitingScreen from '../../screens/WaitingScreen/WaitingScreen';
+import ReserveScreen from '../../screens/ReserveScreen/ReserveScreen';
 
 const RestaurantNavigator = () => {
-   const MenuStack = createStackNavigator();
+   const RestaurantStack = createStackNavigator();
    return (
       <OrdersContextProvider>
-         <MenuStack.Navigator headerMode="none">
-            <MenuStack.Screen name="main" component={MainScreen} />
-            <MenuStack.Screen name="menu" component={MenuScreen} />
-            <MenuStack.Screen name="product" component={ProductScreen} />
-            <MenuStack.Screen name="settings" component={SettingsScreen} />
-            <MenuStack.Screen name="help" component={HelpScreen} />
-            <MenuStack.Screen name="summary" component={SummaryScreen} />
-            <MenuStack.Screen name="waiting" component={WaitingScreen} />
-         </MenuStack.Navigator>
+         <RestaurantStack.Navigator headerMode="none">
+            <RestaurantStack.Screen name="main" component={MainScreen} />
+            <RestaurantStack.Screen name="menu" component={MenuScreen} />
+            <RestaurantStack.Screen name="reserve" component={ReserveScreen} />
+            <RestaurantStack.Screen name="product" component={ProductScreen} />
+            <RestaurantStack.Screen
+               name="settings"
+               component={SettingsScreen}
+            />
+            <RestaurantStack.Screen name="help" component={HelpScreen} />
+            <RestaurantStack.Screen name="summary" component={SummaryScreen} />
+            <RestaurantStack.Screen name="waiting" component={WaitingScreen} />
+         </RestaurantStack.Navigator>
       </OrdersContextProvider>
    );
 };
