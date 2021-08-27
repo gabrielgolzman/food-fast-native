@@ -61,7 +61,7 @@ const WaitingScreen = ({ navigation }) => {
                <SettingsButton
                   onPress={() => navigation.navigate('settings')}
                />
-               <Button type="help" onPress={showDialog}>
+               <Button type="icon" icon="bell-ring" onPress={showDialog}>
                   Solicitar ayuda al personal
                </Button>
                {visible && (
