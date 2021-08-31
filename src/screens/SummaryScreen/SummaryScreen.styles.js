@@ -29,7 +29,6 @@ export const OrderList = styled.FlatList.attrs({
 export const OrderItem = styled(Card.Content)`
    background-color: ${(props) => props.theme.colors.ui.bg};
    flex-direction: row;
-   justify-content: space-between;
    align-items:center;
    border-radius:20px;
    height:60px;
@@ -39,6 +38,7 @@ export const OrderItem = styled(Card.Content)`
 
 export const OrderText = styled.Text`
    font-size: ${(props) => props.theme.fontSizes.body};
+   padding: 0 10px 0 0;
 `;
 
 export const TotalText = styled.Text`

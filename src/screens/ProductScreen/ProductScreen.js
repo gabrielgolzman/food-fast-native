@@ -43,6 +43,7 @@ const ProductScreen = ({ route, navigation }) => {
          unitPrice,
          partialPrice,
          clarifications,
+         isChecked: false,
       });
       navigation.goBack();
    };
