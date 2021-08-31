@@ -16,8 +16,7 @@ export const Title = styled.Text`
    text-align: center;
 `;
 
-export const ReserveForm = styled.View`
+export const ReservationFormContainer = styled.View`
    width: 100%;
    height: 70%;
-   align-items: center;
 `;
