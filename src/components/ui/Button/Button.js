@@ -8,13 +8,17 @@ import {
    EditButton,
 } from './Button.styles';
 
-const Button = ({ children, type, onPress, variation }) => {
+const Button = ({ children, type, onPress, variation, disabled }) => {
    switch (type) {
       case 'help':
          return <HelpButton onPress={onPress}>{children}</HelpButton>;
       case 'large':
          return (
-            <LargeButton style={variation} onPress={onPress}>
+            <LargeButton
+               disabled={disabled}
+               style={variation}
+               onPress={onPress}
+            >
                {children}
             </LargeButton>
          );

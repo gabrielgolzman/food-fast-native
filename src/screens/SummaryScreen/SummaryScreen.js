@@ -27,6 +27,7 @@ const SummaryScreen = ({ navigation }) => {
       deleteOrders,
       setOrderTotal,
       clearCheckboxes,
+        toggleCooking
    } = useContext(OrdersContext);
    const [isEditing, setIsEditing] = useState(false);
    const [oneIsChecked, setOneIsChecked] = useState(false);
@@ -102,10 +103,18 @@ const SummaryScreen = ({ navigation }) => {
                </Button>
             </GoToMenuContainer>
             <ContinueContainer>
+
                {!oneIsChecked ? (
-                  <Button variation={{ width: '65%' }} type="large">
-                     Continuar
-                  </Button>
+                 <Button
+                  variation={{ width: '65%' }}
+                  type="large"
+                  onPress={() => {
+                     toggleCooking();
+                     return navigation.navigate('waiting');
+                  }}
+               >
+                  Continuar
+               </Button>
                ) : (
                   <Button
                      onPress={deleteSelectedOrders}
@@ -115,6 +124,7 @@ const SummaryScreen = ({ navigation }) => {
                      Eliminar seleccionados
                   </Button>
                )}
+
             </ContinueContainer>
          </Container>
       </Layout>

@@ -8,6 +8,7 @@ import ProductScreen from '../../screens/ProductScreen/ProductScreen';
 import SettingsScreen from '../../screens/SettingsScreen/SettingsScreen';
 import HelpScreen from '../../screens/HelpScreen/HelpScreen';
 import SummaryScreen from '../../screens/SummaryScreen/SummaryScreen';
+import WaitingScreen from '../../screens/WaitingScreen/WaitingScreen';
 
 const MenuNavigator = () => {
    const MenuStack = createStackNavigator();
@@ -19,6 +20,7 @@ const MenuNavigator = () => {
             <MenuStack.Screen name="settings" component={SettingsScreen} />
             <MenuStack.Screen name="help" component={HelpScreen} />
             <MenuStack.Screen name="summary" component={SummaryScreen} />
+            <MenuStack.Screen name="waiting" component={WaitingScreen} />
          </MenuStack.Navigator>
       </OrdersContextProvider>
    );
