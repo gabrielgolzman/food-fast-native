@@ -54,22 +54,15 @@ export const OrdersContextProvider = ({ children }) => {
       <OrdersContext.Provider
          value={{
             orders,
-            
             total,
             addOrder,
             setOrderTotal,
-
-            total,
-     cooking,
-            addOrder,
-                 toggleCooking,
-
-            setOrderTotal,
+            cooking,
+            toggleCooking,
             updateTotal,
             setCheckbox,
             clearCheckboxes,
             deleteOrders,
-
          }}
       >
          {children}
