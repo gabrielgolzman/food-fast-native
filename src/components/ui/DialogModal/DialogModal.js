@@ -1,21 +1,67 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Dialog, Portal } from 'react-native-paper';
+
+import { ReservationsContext } from '../../../services/reservation/reservations.context';
 
 import { colors } from '../../../infrastructure/theme/colors';
 
-const DialogModal = ({ visible, hideDialog }) => {
+const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
+   const { addReservation } = useContext(ReservationsContext);
+
+   let { monthsNames } = require('../../../../data/constants.json');
+
+   const reservationMade = () => {
+      addReservation(currentRes);
+      nav.navigate('reservation-resume');
+   };
+
+   const reservationString =
+      currentRes.selectedDate.day +
+      ' de ' +
+      monthsNames[currentRes.selectedDate.month] +
+      ' de ' +
+      currentRes.selectedDate.year +
+      ' a las ' +
+      currentRes.selectedTime +
+      ' horas para ' +
+      currentRes.selectedCapacity +
+      ' personas';
+
    return (
       <Portal>
          <Dialog visible={visible} onDismiss={hideDialog}>
-            <Dialog.Title>
-               El personal fue notificado y se pondrá en contacto con usted en
-               la brevedad
-            </Dialog.Title>
-            <Dialog.Actions>
-               <Button color={colors.ui.primary} onPress={hideDialog}>
-                  Volver
-               </Button>
-            </Dialog.Actions>
+            {type === 'help' && (
+               <>
+                  <Dialog.Title>
+                     El personal fue notificado y se pondrá en contacto con
+                     usted en la brevedad
+                  </Dialog.Title>
+                  <Dialog.Actions>
+                     <Button color={colors.ui.primary} onPress={hideDialog}>
+                        Volver
+                     </Button>
+                  </Dialog.Actions>
+               </>
+            )}
+            {type === 'reservation' && (
+               <>
+                  <Dialog.Title>
+                     ¿Está seguro que desea realizar la siguiente reserva?
+                  </Dialog.Title>
+                  <Dialog.Title>{reservationString}</Dialog.Title>
+                  <Dialog.Actions>
+                     <Button color={colors.ui.secondary} onPress={hideDialog}>
+                        Volver
+                     </Button>
+                     <Button
+                        color={colors.ui.primary}
+                        onPress={reservationMade}
+                     >
+                        Reservar
+                     </Button>
+                  </Dialog.Actions>
+               </>
+            )}
          </Dialog>
       </Portal>
    );

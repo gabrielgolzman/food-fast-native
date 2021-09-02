@@ -3,10 +3,11 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 
 import { mainFilter } from '../../services/reservation/filters';
+import { ReservationDateText } from './ReservationForm.styles';
 
 import Button from '../ui/Button/Button';
 
-const ReservationForm = () => {
+const ReservationForm = ({ onReservationMade }) => {
    const {
       capacityArray,
       tablesArray,
@@ -16,8 +17,10 @@ const ReservationForm = () => {
    const [date, setDate] = useState(new Date(1598051730000));
    const [show, setShow] = useState(false);
    const [availability, setAvailability] = useState(null);
-   const [selectedCapacity, setSelectedCapacity] = useState('');
-   const [selectedTime, setSelectedTime] = useState('');
+   const [selectedCapacity, setSelectedCapacity] = useState(2);
+   const [selectedTime, setSelectedTime] = useState(17);
+
+   let dateString = '';
 
    const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || date;
@@ -30,6 +33,19 @@ const ReservationForm = () => {
       setShow(true);
    };
 
+   const makeReservation = () => {
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate('es-AR', {
+         day: '2-digit',
+      });
+      onReservationMade({
+         selectedDate: { day, month, year },
+         selectedTime,
+         selectedCapacity,
+      });
+   };
+
    const time =
       availability &&
       timesArray.map((ti, i) => {
@@ -38,7 +54,7 @@ const ReservationForm = () => {
                <Picker.Item
                   key={ti}
                   label={ti + ' - ' + (ti + 2) + ' horas'}
-                  value={ti + ' - ' + ti + 2}
+                  value={ti}
                />
             );
          }
@@ -65,6 +81,7 @@ const ReservationForm = () => {
          >
             Día
          </Button>
+         {date && <ReservationDateText>{dateString}</ReservationDateText>}
          {show && (
             <DateTimePicker
                testID="dateTimePicker"
@@ -86,8 +103,8 @@ const ReservationForm = () => {
                      justifyContent: 'center',
                   }}
                   mode="dropdown"
-                  selectedValue={selectedTime}
                   onValueChange={(itemValue) => setSelectedTime(itemValue)}
+                  selectedValue={selectedTime}
                >
                   {time}
                </Picker>
@@ -99,11 +116,18 @@ const ReservationForm = () => {
                      justifyContent: 'center',
                   }}
                   mode="dropdown"
-                  selectedValue={selectedCapacity}
                   onValueChange={(itemValue) => setSelectedCapacity(itemValue)}
+                  selectedValue={selectedCapacity}
                >
                   {capacity}
                </Picker>
+               <Button
+                  type="large"
+                  onPress={makeReservation}
+                  variation={{ width: '40%' }}
+               >
+                  ¡Reservá!
+               </Button>
             </>
          )}
       </>

@@ -27,7 +27,11 @@ const Layout = ({ children, nav, clean }) => {
          <Container>
             <HeaderImage>{buttons}</HeaderImage>
             {visible && (
-               <DialogModal visible={visible} hideDialog={hideDialog} />
+               <DialogModal
+                  type="help"
+                  visible={visible}
+                  hideDialog={hideDialog}
+               />
             )}
             <Main>{children}</Main>
          </Container>

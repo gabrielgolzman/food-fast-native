@@ -8,13 +8,19 @@ import {
 } from './ReservationScreen.styles';
 
 import Layout from '../../utility/Layout/Layout';
-import Button from '../../components/ui/Button/Button';
 import ReservationForm from '../../components/ReservationForm/ReservationForm';
-const ReservationScreen = () => {
+import DialogModal from '../../components/ui/DialogModal/DialogModal';
+const ReservationScreen = ({ navigation }) => {
    const [reservation, setReservation] = useState(null);
+   const [visible, setVisible] = useState(false);
+
+   const showDialog = () => setVisible(true);
+
+   const hideDialog = () => setVisible(false);
 
    const onReservationMade = (reservation) => {
       setReservation(reservation);
+      showDialog();
    };
 
    return (
@@ -25,6 +31,15 @@ const ReservationScreen = () => {
             </TitleContainer>
             <ReservationFormContainer>
                <ReservationForm onReservationMade={onReservationMade} />
+               {visible && (
+                  <DialogModal
+                     type="reservation"
+                     visible={visible}
+                     hideDialog={hideDialog}
+                     currentRes={reservation}
+                     nav={navigation}
+                  />
+               )}
             </ReservationFormContainer>
          </Main>
       </Layout>
