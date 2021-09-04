@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import { Container } from './SettingsScreen.styles';
 
-import Button from '../../components/ui/Button/Button';
+import Button from '../../../components/ui/Button/Button';
 
 const SettingsScreen = ({ navigation }) => {
    return (

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import { Container } from './HelpScreen.styles';
 
-import Button from '../../components/ui/Button/Button';
+import Button from '../../../components/ui/Button/Button';
 
 const HelpScreen = ({ navigation }) => {
    return (

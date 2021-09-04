@@ -14,10 +14,10 @@ import {
    QuantityCard,
    OptionsContainer,
 } from './ProductScreen.styles';
-import { OrdersContext } from '../../services/orders/orders.context';
+import { OrdersContext } from '../../../services/orders/orders.context';
 
-import Button from '../../components/ui/Button/Button';
-import QuantityHandler from '../../components/restaurant/QuantityHandler/QuantityHandler';
+import Button from '../../../components/ui/Button/Button';
+import QuantityHandler from '../../../components/restaurant/QuantityHandler/QuantityHandler';
 
 const ProductScreen = ({ route, navigation }) => {
    const [currentQuantity, setCurrentQuantity] = useState(1);

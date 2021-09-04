@@ -2,15 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import { View, TouchableNativeFeedback } from 'react-native';
 
 import { MenuList } from './MenuScreen.styles';
-import { OrdersContext } from '../../services/orders/orders.context';
+import { OrdersContext } from '../../../services/orders/orders.context';
 
-import ProductCard from '../../components/restaurant/ProductCard/ProductCard';
-import Layout from '../../utility/Layout/Layout';
-import { FadeInView } from '../../utility/animations/FadeAnimation';
-import Button from '../../components/ui/Button/Button';
+import ProductCard from '../../../components/restaurant/ProductCard/ProductCard';
+import Layout from '../../../utility/Layout/Layout';
+import { FadeInView } from '../../../utility/animations/FadeAnimation';
+import Button from '../../../components/ui/Button/Button';
 
 const MenuScreen = ({ navigation }) => {
-   let mock = require('../../../data/mock.json');
+   let mock = require('../../../../data/mock.json');
 
    const { orders, total, setOrderTotal } = useContext(OrdersContext);
 

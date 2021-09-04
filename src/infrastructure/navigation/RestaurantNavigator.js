@@ -5,14 +5,14 @@ import { OrdersContextProvider } from '../../services/orders/orders.context';
 import { ReservationsContextProvider } from '../../services/reservation/reservations.context';
 
 import MainScreen from '../../screens/MainScreen/MainScreen';
-import MenuScreen from '../../screens/MenuScreen/MenuScreen';
-import ProductScreen from '../../screens/ProductScreen/ProductScreen';
-import SettingsScreen from '../../screens/SettingsScreen/SettingsScreen';
-import HelpScreen from '../../screens/HelpScreen/HelpScreen';
-import SummaryScreen from '../../screens/SummaryScreen/SummaryScreen';
-import WaitingScreen from '../../screens/WaitingScreen/WaitingScreen';
-import ReservationScreen from '../../screens/ReservationScreen/ReservationScreen';
-import ReservationResumeScreen from '../../screens/ReservationResumeScreen/ReservationResumeScreen';
+import MenuScreen from '../../screens/restaurant/MenuScreen/MenuScreen';
+import ProductScreen from '../../screens/restaurant/ProductScreen/ProductScreen';
+import SettingsScreen from '../../screens/restaurant/SettingsScreen/SettingsScreen';
+import HelpScreen from '../../screens/restaurant/HelpScreen/HelpScreen';
+import SummaryScreen from '../../screens/restaurant/SummaryScreen/SummaryScreen';
+import WaitingScreen from '../../screens/restaurant/WaitingScreen/WaitingScreen';
+import ReservationScreen from '../../screens/reservation/ReservationScreen/ReservationScreen';
+import ReservationResumeScreen from '../../screens/reservation/ReservationResumeScreen/ReservationResumeScreen';
 
 const RestaurantNavigator = () => {
    const RestaurantStack = createStackNavigator();

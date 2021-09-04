@@ -12,20 +12,22 @@ const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
 
    const reservationMade = () => {
       addReservation(currentRes);
-      nav.navigate('reservation-resume');
+      console.log(currentRes);
+      nav.navigate('reservation-resume', { reservationString });
    };
 
    const reservationString =
+      currentRes &&
       currentRes.selectedDate.day +
-      ' de ' +
-      monthsNames[currentRes.selectedDate.month] +
-      ' de ' +
-      currentRes.selectedDate.year +
-      ' a las ' +
-      currentRes.selectedTime +
-      ' horas para ' +
-      currentRes.selectedCapacity +
-      ' personas';
+         ' de ' +
+         monthsNames[currentRes.selectedDate.month - 1] +
+         ' de ' +
+         currentRes.selectedDate.year +
+         ' a las ' +
+         currentRes.selectedTime +
+         ' horas para ' +
+         currentRes.selectedCapacity +
+         ' personas';
 
    return (
       <Portal>

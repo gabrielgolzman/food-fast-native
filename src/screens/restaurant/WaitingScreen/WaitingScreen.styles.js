@@ -10,7 +10,7 @@ export const SettingsButton = styled(IconButton).attrs((props) => ({
 `;
 
 export const BackgroundCover = styled.ImageBackground.attrs({
-   source: require('../../../assets/img/cover_burger.jpg'),
+   source: require('../../../../assets/img/cover_burger.jpg'),
 })`
    width: 100%;
    height: 100%;

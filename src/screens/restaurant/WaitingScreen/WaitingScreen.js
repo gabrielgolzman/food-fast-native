@@ -9,12 +9,12 @@ import {
    MainContainer,
    GreetText,
 } from './WaitingScreen.styles';
-import { colors } from '../../infrastructure/theme/colors';
-import { OrdersContext } from '../../services/orders/orders.context';
+import { colors } from '../../../infrastructure/theme/colors';
+import { OrdersContext } from '../../../services/orders/orders.context';
 
-import Button from '../../components/ui/Button/Button';
-import DialogModal from '../../components/ui/DialogModal/DialogModal';
-import { FadeInView } from '../../utility/animations/FadeAnimation';
+import Button from '../../../components/ui/Button/Button';
+import DialogModal from '../../../components/ui/DialogModal/DialogModal';
+import { FadeInView } from '../../../utility/animations/FadeAnimation';
 
 const WaitingScreen = ({ navigation }) => {
    const { cooking } = useContext(OrdersContext);
