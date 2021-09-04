@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Button, Dialog, Portal } from 'react-native-paper';
 
 import { ReservationsContext } from '../../../services/reservation/reservations.context';
-
 import { colors } from '../../../infrastructure/theme/colors';
+import { ReservationText } from './DialogModal.styles';
 
 const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
    const { addReservation } = useContext(ReservationsContext);
@@ -48,7 +48,7 @@ const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
                   <Dialog.Title>
                      ¿Está seguro que desea realizar la siguiente reserva?
                   </Dialog.Title>
-                  <Dialog.Title>{reservationString}</Dialog.Title>
+                  <ReservationText>{reservationString}</ReservationText>
                   <Dialog.Actions>
                      <Button color={colors.ui.secondary} onPress={hideDialog}>
                         Volver

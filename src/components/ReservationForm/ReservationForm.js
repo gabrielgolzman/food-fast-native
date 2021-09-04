@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
+import { isSaturday, isSunday, lastDayOfWeek, sub, add } from 'date-fns';
 
 import { mainFilter } from '../../services/reservation/filters';
-import { ReservationDateText } from './ReservationForm.styles';
+import {
+   ReservationDateText,
+   FormContainer,
+   PickerContainer,
+   ReservationPicker,
+} from './ReservationForm.styles';
 
 import Button from '../ui/Button/Button';
 
@@ -20,13 +26,34 @@ const ReservationForm = ({ onReservationMade }) => {
    const [selectedCapacity, setSelectedCapacity] = useState(2);
    const [selectedTime, setSelectedTime] = useState(17);
 
+   const startDate = () => {
+      let curr = new Date();
+      if (isSaturday(curr)) {
+         return add(curr, { days: 2 });
+      } else if (isSunday(curr)) {
+         return add(curr, { days: 1 });
+      }
+      return curr;
+   };
+
+   const lastDate = () => {
+      let curr = new Date();
+      let last = lastDayOfWeek(curr, { weekStartsOn: 1 });
+      if (isSaturday(curr)) {
+         return add(curr, { days: 6 });
+      } else if (isSunday(curr)) {
+         return add(curr, { days: 5 });
+      }
+      return sub(last, { days: 2 });
+   };
+
    let dateString = '';
 
    const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || date;
       setDate(currentDate);
       setShow(!show);
-      setAvailability(mainFilter(currentDate));
+      if (selectedDate !== undefined) setAvailability(mainFilter(currentDate));
    };
 
    const showDatepicker = () => {
@@ -73,7 +100,7 @@ const ReservationForm = ({ onReservationMade }) => {
       });
 
    return (
-      <>
+      <FormContainer>
          <Button
             type="large"
             onPress={showDatepicker}
@@ -88,39 +115,34 @@ const ReservationForm = ({ onReservationMade }) => {
                value={date}
                mode="date"
                is24Hour={true}
-               minimumDate={Date.now()}
+               minimumDate={startDate()}
+               maximumDate={lastDate()}
                display="default"
                onChange={onChange}
             />
          )}
          {availability && (
             <>
-               <Picker
-                  style={{
-                     height: 50,
-                     width: '60%',
-                     color: 'green',
-                     justifyContent: 'center',
-                  }}
-                  mode="dropdown"
-                  onValueChange={(itemValue) => setSelectedTime(itemValue)}
-                  selectedValue={selectedTime}
-               >
-                  {time}
-               </Picker>
-               <Picker
-                  style={{
-                     height: 50,
-                     width: '60%',
-                     color: 'green',
-                     justifyContent: 'center',
-                  }}
-                  mode="dropdown"
-                  onValueChange={(itemValue) => setSelectedCapacity(itemValue)}
-                  selectedValue={selectedCapacity}
-               >
-                  {capacity}
-               </Picker>
+               <PickerContainer>
+                  <ReservationPicker
+                     mode="dropdown"
+                     onValueChange={(itemValue) => setSelectedTime(itemValue)}
+                     selectedValue={selectedTime}
+                  >
+                     {time}
+                  </ReservationPicker>
+               </PickerContainer>
+               <PickerContainer>
+                  <ReservationPicker
+                     mode="dropdown"
+                     onValueChange={(itemValue) =>
+                        setSelectedCapacity(itemValue)
+                     }
+                     selectedValue={selectedCapacity}
+                  >
+                     {capacity}
+                  </ReservationPicker>
+               </PickerContainer>
                <Button
                   type="large"
                   onPress={makeReservation}
@@ -130,7 +152,7 @@ const ReservationForm = ({ onReservationMade }) => {
                </Button>
             </>
          )}
-      </>
+      </FormContainer>
    );
 };
 

@@ -7,9 +7,9 @@ import {
    ReservationFormContainer,
 } from './ReservationScreen.styles';
 
-import Layout from '../../utility/Layout/Layout';
-import ReservationForm from '../../components/ReservationForm/ReservationForm';
-import DialogModal from '../../components/ui/DialogModal/DialogModal';
+import Layout from '../../../utility/Layout/Layout';
+import ReservationForm from '../../../components/ReservationForm/ReservationForm';
+import DialogModal from '../../../components/ui/DialogModal/DialogModal';
 const ReservationScreen = ({ navigation }) => {
    const [reservation, setReservation] = useState(null);
    const [visible, setVisible] = useState(false);
