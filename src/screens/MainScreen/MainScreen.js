@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Main } from './MainScreen.styles';
+import { ReservationsContext } from '../../services/reservation/reservations.context';
+import { colors } from '../../infrastructure/theme/colors';
 
 import Layout from '../../utility/Layout/Layout';
 import Button from '../../components/ui/Button/Button';
 
 const MainScreen = ({ navigation }) => {
+   const { reservations } = useContext(ReservationsContext);
    return (
       <Layout clean>
          <Main>
@@ -16,6 +19,16 @@ const MainScreen = ({ navigation }) => {
             >
                Pedir reserva
             </Button>
+            {reservations.length > 0 && (
+               <Button
+                  type="main"
+                  icon="email"
+                  onPress={() => navigation.navigate('reservation-list')}
+                  variation={{ backgroundColor: colors.ui.secondary }}
+               >
+                  Ver mis reservas
+               </Button>
+            )}
             <Button
                type="main"
                icon="silverware-variant"

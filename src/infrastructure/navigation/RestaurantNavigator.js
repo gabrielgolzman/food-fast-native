@@ -13,6 +13,7 @@ import SummaryScreen from '../../screens/restaurant/SummaryScreen/SummaryScreen'
 import WaitingScreen from '../../screens/restaurant/WaitingScreen/WaitingScreen';
 import ReservationScreen from '../../screens/reservation/ReservationScreen/ReservationScreen';
 import ReservationResumeScreen from '../../screens/reservation/ReservationResumeScreen/ReservationResumeScreen';
+import ReservationListScreen from '../../screens/reservation/ReservationListScreen/ReservationListScreen';
 
 const RestaurantNavigator = () => {
    const RestaurantStack = createStackNavigator();
@@ -29,6 +30,10 @@ const RestaurantNavigator = () => {
                <RestaurantStack.Screen
                   name="reservation-resume"
                   component={ReservationResumeScreen}
+               />
+               <RestaurantStack.Screen
+                  name="reservation-list"
+                  component={ReservationListScreen}
                />
                <RestaurantStack.Screen
                   name="product"

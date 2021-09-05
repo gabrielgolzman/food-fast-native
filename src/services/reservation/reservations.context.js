@@ -9,8 +9,17 @@ export const ReservationsContextProvider = ({ children }) => {
       setReservations([...reservations, newReservation]);
    };
 
+   const removeReservation = (reservationIndex) => {
+      const newReservations = reservations.filter(
+         (_, i) => reservationIndex !== i
+      );
+      setReservations(newReservations);
+   };
+
    return (
-      <ReservationsContext.Provider value={{ reservations, addReservation }}>
+      <ReservationsContext.Provider
+         value={{ reservations, addReservation, removeReservation }}
+      >
          {children}
       </ReservationsContext.Provider>
    );

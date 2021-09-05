@@ -32,7 +32,6 @@ const ReservationResumeScreen = ({ navigation, route }) => {
                   <ReservationText>{reservationString}</ReservationText>
                </MessageContainer>
             </FadeInView>
-
             <Button
                onPress={() => navigation.navigate('main')}
                variation={{

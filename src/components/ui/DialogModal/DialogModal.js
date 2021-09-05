@@ -12,7 +12,6 @@ const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
 
    const reservationMade = () => {
       addReservation(currentRes);
-      console.log(currentRes);
       nav.navigate('reservation-resume', { reservationString });
    };
 
