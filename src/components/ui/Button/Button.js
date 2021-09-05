@@ -1,26 +1,43 @@
 import React from 'react';
 
 import {
-   HelpButton,
+   IconAndButton,
+   MainButton,
    LargeButton,
    GoBackButton,
    StickyButton,
    EditButton,
 } from './Button.styles';
 
-const Button = ({ children, type, onPress, variation, disabled }) => {
+const Button = ({ children, type, onPress, variation, disabled, icon }) => {
    switch (type) {
-      case 'help':
-         return <HelpButton onPress={onPress}>{children}</HelpButton>;
+      case 'icon':
+         return (
+            <IconAndButton icon={icon} onPress={onPress}>
+               {children}
+            </IconAndButton>
+         );
       case 'large':
          return (
             <LargeButton
                disabled={disabled}
                style={variation}
                onPress={onPress}
+               icon={icon}
             >
                {children}
             </LargeButton>
+         );
+      case 'main':
+         return (
+            <MainButton
+               disabled={disabled}
+               style={variation}
+               onPress={onPress}
+               icon={icon}
+            >
+               {children}
+            </MainButton>
          );
 
       case 'goBack':

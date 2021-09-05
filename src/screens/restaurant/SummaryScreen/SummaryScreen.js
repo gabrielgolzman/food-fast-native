@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Checkbox } from 'react-native-paper';
 
-import { OrdersContext } from '../../services/orders/orders.context';
+import { OrdersContext } from '../../../services/orders/orders.context';
 import {
    Header,
    HeaderTitle,
@@ -14,10 +14,10 @@ import {
    OrderText,
    GoToMenuContainer,
 } from './SummaryScreen.styles';
-import { colors } from '../../infrastructure/theme/colors';
+import { colors } from '../../../infrastructure/theme/colors';
 
-import Layout from '../../utility/Layout/Layout';
-import Button from '../../components/ui/Button/Button';
+import Layout from '../../../utility/Layout/Layout';
+import Button from '../../../components/ui/Button/Button';
 
 const SummaryScreen = ({ navigation }) => {
    const {

@@ -1,0 +1,20 @@
+{
+   "numberOfTables": 14,
+   "timesArray": [17, 19, 21],
+   "capacityArray": [2, 4, 6],
+   "tablesArray": [7, 2, 10],
+   "monthsNames": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+   ]
+}

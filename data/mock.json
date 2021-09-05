@@ -88,16 +88,16 @@
       },
       {
          "id": 31,
-         "dateAndHourFrom": "2021-12-27T18:00",
-         "dateAndHourUntil": "2021-12-27T20:00",
+         "dateAndHourFrom": "2021-12-27T19:00",
+         "dateAndHourUntil": "2021-12-27T21:00",
          "idClient": 23,
          "idTable": 3,
          "idInvoice": 3
       },
       {
          "id": 19,
-         "dateAndHourFrom": "2021-12-23T15:00",
-         "dateAndHourUntil": "2021-12-23T17:00",
+         "dateAndHourFrom": "2021-12-23T17:00",
+         "dateAndHourUntil": "2021-12-23T19:00",
          "idClient": 19,
          "idTable": 3,
          "idInvoice": 7

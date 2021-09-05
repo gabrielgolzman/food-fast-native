@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import { Container } from './SettingsScreen.styles';
+import { Container } from './HelpScreen.styles';
 
-import Button from '../../components/ui/Button/Button';
+import Button from '../../../components/ui/Button/Button';
 
-const SettingsScreen = ({ navigation }) => {
+const HelpScreen = ({ navigation }) => {
    return (
       <Container>
          <Button type="goBack" onPress={() => navigation.goBack()} />
@@ -16,11 +16,11 @@ const SettingsScreen = ({ navigation }) => {
                   marginTop: 50,
                }}
             >
-               The Settings Screen
+               The Help Screen
             </Text>
          </View>
       </Container>
    );
 };
 
-export default SettingsScreen;
+export default HelpScreen;

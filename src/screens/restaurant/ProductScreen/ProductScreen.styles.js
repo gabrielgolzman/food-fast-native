@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { Card, TextInput } from 'react-native-paper';
 
-import { colors } from '../../infrastructure/theme/colors';
+import { colors } from '../../../infrastructure/theme/colors';
 
 export const Container = styled.View`
    flex: 1;
