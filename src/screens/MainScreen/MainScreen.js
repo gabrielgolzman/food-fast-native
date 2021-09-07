@@ -6,9 +6,11 @@ import { colors } from '../../infrastructure/theme/colors';
 
 import Layout from '../../utility/Layout/Layout';
 import Button from '../../components/ui/Button/Button';
+import { AuthenticationContext } from '../../services/authentication/authentication.context';
 
 const MainScreen = ({ navigation }) => {
    const { reservations } = useContext(ReservationsContext);
+   const { onLogout } = useContext(AuthenticationContext);
    return (
       <Layout clean>
          <Main>
@@ -35,6 +37,9 @@ const MainScreen = ({ navigation }) => {
                onPress={() => navigation.navigate('menu')}
             >
                Estoy en el local
+            </Button>
+            <Button type="main" icon="silverware-variant" onPress={onLogout}>
+               Logout
             </Button>
          </Main>
       </Layout>

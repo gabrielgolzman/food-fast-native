@@ -8,7 +8,6 @@ import RestaurantNavigator from './RestaurantNavigator';
 
 export const MainNavigation = () => {
    const { isAuthenticated } = useContext(AuthenticationContext);
-   console.log(isAuthenticated);
 
    return (
       <NavigationContainer>

@@ -22,7 +22,7 @@ const LoginScreen = () => {
    return (
       <AccountBackground>
          <AccountContainer>
-            <Title>¡Bienvenido!</Title>
+            <Title>Iniciar sesión</Title>
             <AuthInput
                label="Email"
                value={email}
