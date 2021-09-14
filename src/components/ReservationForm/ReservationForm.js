@@ -22,9 +22,10 @@ const ReservationForm = ({ onReservationMade }) => {
    } = require('../../../data/constants.json');
    const [date, setDate] = useState(new Date(1598051730000));
    const [show, setShow] = useState(false);
-   const [availability, setAvailability] = useState(null);
-   const [selectedCapacity, setSelectedCapacity] = useState(2);
-   const [selectedTime, setSelectedTime] = useState(17);
+   const [availableTime, setAvailableTime] = useState([]);
+   const [availableCapacity, setAvailableCapacity] = useState([]);
+   const [selectedCapacity, setSelectedCapacity] = useState(0);
+   const [selectedTime, setSelectedTime] = useState(0);
 
    const startDate = () => {
       let curr = new Date();
@@ -53,7 +54,8 @@ const ReservationForm = ({ onReservationMade }) => {
       const currentDate = selectedDate || date;
       setDate(currentDate);
       setShow(!show);
-      if (selectedDate !== undefined) setAvailability(mainFilter(currentDate));
+      if (selectedDate !== undefined)
+         setAvailableTime(mainFilter(currentDate, 'time'));
    };
 
    const showDatepicker = () => {
@@ -73,10 +75,15 @@ const ReservationForm = ({ onReservationMade }) => {
       });
    };
 
+   const onSelectedTime = (itemValue) => {
+      setSelectedTime(itemValue);
+      setAvailableCapacity(mainFilter(date, 'capacity', itemValue));
+   };
+
    const time =
-      availability &&
+      availableTime &&
       timesArray.map((ti, i) => {
-         if (availability.timeAvailableArray[i] < numberOfTables) {
+         if (availableTime.timeAvailableArray[i] < numberOfTables) {
             return (
                <Picker.Item
                   key={ti}
@@ -89,9 +96,9 @@ const ReservationForm = ({ onReservationMade }) => {
       });
 
    const capacity =
-      availability &&
+      availableCapacity.length !== 0 &&
       capacityArray.map((cap, i) => {
-         if (availability.capacityAvailableArray[i] < tablesArray[i]) {
+         if (availableCapacity.capacityAvailableArray[i] < tablesArray[i]) {
             return (
                <Picker.Item key={cap} label={cap + ' personas'} value={cap} />
             );
@@ -121,17 +128,19 @@ const ReservationForm = ({ onReservationMade }) => {
                onChange={onChange}
             />
          )}
-         {availability && (
+         {availableTime && (
+            <PickerContainer>
+               <ReservationPicker
+                  mode="dropdown"
+                  onValueChange={(itemValue) => onSelectedTime(itemValue)}
+                  selectedValue={selectedTime}
+               >
+                  {time}
+               </ReservationPicker>
+            </PickerContainer>
+         )}
+         {availableCapacity && (
             <>
-               <PickerContainer>
-                  <ReservationPicker
-                     mode="dropdown"
-                     onValueChange={(itemValue) => setSelectedTime(itemValue)}
-                     selectedValue={selectedTime}
-                  >
-                     {time}
-                  </ReservationPicker>
-               </PickerContainer>
                <PickerContainer>
                   <ReservationPicker
                      mode="dropdown"
