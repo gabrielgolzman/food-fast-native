@@ -22,8 +22,8 @@ const ReservationForm = ({ onReservationMade }) => {
    } = require('../../../data/constants.json');
    const [date, setDate] = useState(new Date(1598051730000));
    const [show, setShow] = useState(false);
-   const [availableTime, setAvailableTime] = useState([]);
-   const [availableCapacity, setAvailableCapacity] = useState([]);
+   const [availableTime, setAvailableTime] = useState(null);
+   const [availableCapacity, setAvailableCapacity] = useState(null);
    const [selectedCapacity, setSelectedCapacity] = useState(0);
    const [selectedTime, setSelectedTime] = useState(0);
 
@@ -83,7 +83,7 @@ const ReservationForm = ({ onReservationMade }) => {
    const time =
       availableTime &&
       timesArray.map((ti, i) => {
-         if (availableTime.timeAvailableArray[i] < numberOfTables) {
+         if (availableTime[i] < numberOfTables) {
             return (
                <Picker.Item
                   key={ti}
@@ -96,9 +96,9 @@ const ReservationForm = ({ onReservationMade }) => {
       });
 
    const capacity =
-      availableCapacity.length !== 0 &&
+      availableCapacity &&
       capacityArray.map((cap, i) => {
-         if (availableCapacity.capacityAvailableArray[i] < tablesArray[i]) {
+         if (availableCapacity[i] < tablesArray[i]) {
             return (
                <Picker.Item key={cap} label={cap + ' personas'} value={cap} />
             );
@@ -132,9 +132,18 @@ const ReservationForm = ({ onReservationMade }) => {
             <PickerContainer>
                <ReservationPicker
                   mode="dropdown"
+                  prompt="Select Time"
                   onValueChange={(itemValue) => onSelectedTime(itemValue)}
                   selectedValue={selectedTime}
+                  label="Select Time"
                >
+                  {selectedTime === 0 && (
+                     <Picker.Item
+                        key="a1"
+                        label="Seleccionar horario"
+                        value={null}
+                     />
+                  )}
                   {time}
                </ReservationPicker>
             </PickerContainer>

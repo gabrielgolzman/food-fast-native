@@ -1,7 +1,7 @@
 let data = require('../../../data/mock.json');
 let CONSTANTS_RESTAURANT = require('../../../data/constants.json');
 
-const equijoin = (xs, ys, primary, foreign, sel) => {
+const equiJoin = (xs, ys, primary, foreign, sel) => {
    const ix = xs.reduce((ix, row) => ix.set(row[primary], row), new Map());
    return ys.map((row) => sel(ix.get(row[foreign]), row));
 };
@@ -18,7 +18,7 @@ export const dateFilter = (dateForReservation) => {
 
 export const mainFilter = (dateForReservation, mode, timeSelected) => {
    const dayForJoin = dateFilter(dateForReservation);
-   const tableJoin = equijoin(
+   const tableJoin = equiJoin(
       data.tables,
       dayForJoin,
       'id',
@@ -37,7 +37,8 @@ export const mainFilter = (dateForReservation, mode, timeSelected) => {
       }
       CONSTANTS_RESTAURANT.timesArray.forEach((ta, i) => {
          let tempArray = tableJoin.filter((r) => {
-            const hourOfReservation = new Date(r.dateAndHourFrom).getHours();
+            const hourOfReservation =
+               new Date(r.dateAndHourFrom).getHours() + 1;
             return hourOfReservation === ta;
          });
          timesOccupiedArray[i] += tempArray.length;
@@ -59,7 +60,8 @@ export const mainFilter = (dateForReservation, mode, timeSelected) => {
 
       CONSTANTS_RESTAURANT.capacityArray.forEach((ca, i) => {
          let tablesArray = tableJoin.filter((t) => {
-            const hourOfReservation = new Date(t.dateAndHourFrom).getHours();
+            const hourOfReservation =
+               new Date(t.dateAndHourFrom).getHours() + 1;
             return t.capacity === ca && timeSelected === hourOfReservation;
          });
          capacityOccupiedArray[i] += tablesArray.length;

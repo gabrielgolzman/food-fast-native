@@ -80,24 +80,24 @@
    "reservations": [
       {
          "id": 41,
-         "dateAndHourFrom": "2021-09-16T19:00",
-         "dateAndHourUntil": "2021-09-16T21:00",
+         "dateAndHourFrom": "2021-09-16T21:00:00.000Z",
+         "dateAndHourUntil": "2021-09-16T23:00:00.000Z",
          "idClient": 17,
          "idTable": 5,
          "idInvoice": 41
       },
       {
          "id": 31,
-         "dateAndHourFrom": "2021-09-16T21:00",
-         "dateAndHourUntil": "2021-09-16T23:00",
+         "dateAndHourFrom": "2021-09-16T21:00:00.000Z",
+         "dateAndHourUntil": "2021-09-16T23:00:00.000Z",
          "idClient": 23,
          "idTable": 2,
          "idInvoice": 3
       },
       {
          "id": 19,
-         "dateAndHourFrom": "2021-12-23T17:00",
-         "dateAndHourUntil": "2021-12-23T19:00",
+         "dateAndHourFrom": "2021-09-16T17:00:00.000Z",
+         "dateAndHourUntil": "2021-09-16T19:00:00.000Z",
          "idClient": 19,
          "idTable": 3,
          "idInvoice": 7
