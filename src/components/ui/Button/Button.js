@@ -13,7 +13,7 @@ const Button = ({ children, type, onPress, variation, disabled, icon }) => {
    switch (type) {
       case 'icon':
          return (
-            <IconAndButton icon={icon} onPress={onPress}>
+            <IconAndButton icon={icon} style={variation} onPress={onPress}>
                {children}
             </IconAndButton>
          );

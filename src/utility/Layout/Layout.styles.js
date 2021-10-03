@@ -14,8 +14,8 @@ export const HeaderImage = styled.ImageBackground.attrs({
    position: absolute;
    top: 0;
    display: flex;
+   flex-direction: column;
    z-index: 1;
-   flex-direction: row;
    justify-content: space-between;
 `;
 
