@@ -2,16 +2,31 @@ import React, { useContext } from 'react';
 import { Button, Dialog, Portal } from 'react-native-paper';
 
 import { ReservationsContext } from '../../../services/reservation/reservations.context';
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 import { colors } from '../../../infrastructure/theme/colors';
 import { ReservationText } from './DialogModal.styles';
 
 const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
    const { addReservation } = useContext(ReservationsContext);
+   const { userEmail } = useContext(AuthenticationContext);
 
    let { monthsNames } = require('../../../../data/constants.json');
 
    const reservationMade = () => {
-      addReservation(currentRes);
+      const res = {
+         dateAndHour: new Date(
+            currentRes.selectedDate.year,
+            currentRes.selectedDate.month,
+            currentRes.selectedDate.day,
+            currentRes.selectedTime
+         ),
+         qtyPersons: currentRes.selectedCapacity,
+         tableNumber: 23,
+         state: 'Realizada',
+         userEmail,
+      };
+      console.log(res);
+      addReservation(res);
       nav.navigate('reservation-resume', { reservationString });
    };
 

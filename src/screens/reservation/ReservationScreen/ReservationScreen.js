@@ -19,6 +19,7 @@ const ReservationScreen = ({ navigation }) => {
    const hideDialog = () => setVisible(false);
 
    const onReservationMade = (reservation) => {
+      console.log(reservation);
       setReservation(reservation);
       showDialog();
    };

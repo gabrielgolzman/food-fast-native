@@ -24,7 +24,7 @@ const ReservationForm = ({ onReservationMade }) => {
    const [show, setShow] = useState(false);
    const [availableTime, setAvailableTime] = useState(null);
    const [availableCapacity, setAvailableCapacity] = useState(null);
-   const [selectedCapacity, setSelectedCapacity] = useState(0);
+   const [selectedCapacity, setSelectedCapacity] = useState(2);
    const [selectedTime, setSelectedTime] = useState(0);
 
    const startDate = () => {
