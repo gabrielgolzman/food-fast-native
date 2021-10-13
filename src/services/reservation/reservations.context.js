@@ -8,7 +8,7 @@ export const ReservationsContextProvider = ({ children }) => {
 
    useEffect(() => {
       axios
-         .get('http://localhost:5000/reservations')
+         .get('http://192.168.1.42:5000/reservations')
          .then((res) => {
             setReservations(res.data);
          })
@@ -31,10 +31,16 @@ export const ReservationsContextProvider = ({ children }) => {
    };
 
    const removeReservation = (reservationIndex) => {
-      const newReservations = reservations.filter(
-         (_, i) => reservationIndex !== i
-      );
-      setReservations(newReservations);
+      axios
+         .patch(
+            `http://192.168.1.42:5000/reservations/delete/${reservationIndex}`
+         )
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    return (

@@ -2,13 +2,11 @@ import React, { useContext } from 'react';
 import { Button, Dialog, Portal } from 'react-native-paper';
 
 import { ReservationsContext } from '../../../services/reservation/reservations.context';
-import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 import { colors } from '../../../infrastructure/theme/colors';
 import { ReservationText } from './DialogModal.styles';
 
 const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
    const { addReservation } = useContext(ReservationsContext);
-   const { userEmail } = useContext(AuthenticationContext);
 
    let { monthsNames } = require('../../../../data/constants.json');
 
@@ -23,7 +21,6 @@ const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
          qtyPersons: currentRes.selectedCapacity,
          tableNumber: 23,
          state: 'Realizada',
-         userEmail,
       };
       console.log(res);
       addReservation(res);

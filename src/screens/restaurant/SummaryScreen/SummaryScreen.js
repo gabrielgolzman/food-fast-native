@@ -27,7 +27,7 @@ const SummaryScreen = ({ navigation }) => {
       deleteOrders,
       setOrderTotal,
       clearCheckboxes,
-      toggleCooking,
+      createInvoice,
    } = useContext(OrdersContext);
    const [isEditing, setIsEditing] = useState(false);
    const [oneIsChecked, setOneIsChecked] = useState(false);
@@ -108,7 +108,7 @@ const SummaryScreen = ({ navigation }) => {
                      variation={{ width: '65%' }}
                      type="large"
                      onPress={() => {
-                        toggleCooking();
+                        createInvoice();
                         return navigation.navigate('waiting');
                      }}
                   >

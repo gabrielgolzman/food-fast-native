@@ -17,14 +17,14 @@ import DialogModal from '../../../components/ui/DialogModal/DialogModal';
 import { FadeInView } from '../../../utility/animations/FadeAnimation';
 
 const WaitingScreen = ({ navigation }) => {
-   const { cooking } = useContext(OrdersContext);
+   const { invoices, cleanOrder } = useContext(OrdersContext);
    const [visible, setVisible] = useState(false);
 
    const showDialog = () => setVisible(true);
 
    const hideDialog = () => setVisible(false);
 
-   const message = cooking ? (
+   const message = !invoices[invoices.length - 1].isServed ? (
       <>
          <MaterialCommunityIcons
             name="chef-hat"
@@ -39,7 +39,10 @@ const WaitingScreen = ({ navigation }) => {
       <>
          <MaterialIcons name="fastfood" size={150} color={colors.ui.primary} />
          <Button
-            onPress={() => navigation.navigate('menu')}
+            onPress={() => {
+               cleanOrder();
+               return navigation.navigate('menu');
+            }}
             variation={{
                width: '65%',
                backgroundColor: colors.ui.secondary,
@@ -61,9 +64,9 @@ const WaitingScreen = ({ navigation }) => {
                <SettingsButton
                   onPress={() => navigation.navigate('settings')}
                />
-               <Button type="icon" icon="bell-ring" onPress={showDialog}>
+               {/* <Button type="icon" icon="bell-ring" onPress={showDialog}>
                   Solicitar ayuda al personal
-               </Button>
+               </Button> */}
                {visible && (
                   <DialogModal visible={visible} hideDialog={hideDialog} />
                )}

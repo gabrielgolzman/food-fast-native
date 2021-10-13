@@ -1,14 +1,62 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 export const OrdersContext = createContext();
 
 export const OrdersContextProvider = ({ children }) => {
    const [orders, setOrders] = useState([]);
    const [total, setTotal] = useState(0);
+   const [invoices, setInvoices] = useState([]);
    const [cooking, setCooking] = useState(false);
+
+   useEffect(() => {
+      axios
+         .get('http://192.168.1.42:5000/invoices')
+         .then((res) => {
+            setInvoices(res.data);
+         })
+         .catch((error) => console.log(error));
+   });
 
    const addOrder = (newOrder) => {
       setOrders([...orders, newOrder]);
+   };
+
+   const cleanOrder = () => {
+      setOrders([]);
+      setOrderTotal(0);
+   };
+
+   const askForHelp = (number) => {
+      axios
+         .patch(`http://192.168.1.42:5000/tables/help/${number}`)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
+
+   const createInvoice = async () => {
+      const ordersMapped = orders.map((o) => {
+         return {
+            quantity: o.quantity,
+            title: o.optionName,
+            unitPrice: o.unitPrice,
+            clarifications: o.clarifications,
+         };
+      });
+      const invoice = {
+         invoiceNumber: total + 'BR-F',
+         total,
+         details: ordersMapped,
+      };
+      try {
+         await axios.post('http://192.168.1.42:5000/invoices', invoice);
+      } catch (error) {
+         console.log(error);
+      }
    };
 
    const toggleCooking = () => {
@@ -55,8 +103,12 @@ export const OrdersContextProvider = ({ children }) => {
          value={{
             orders,
             total,
+            invoices,
             addOrder,
+            askForHelp,
+            cleanOrder,
             setOrderTotal,
+            createInvoice,
             cooking,
             toggleCooking,
             updateTotal,

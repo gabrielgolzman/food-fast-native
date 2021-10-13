@@ -9,6 +9,7 @@ import Button from '../../components/ui/Button/Button';
 
 const MainScreen = ({ navigation }) => {
    const { reservations } = useContext(ReservationsContext);
+   const admit = reservations.some((r) => r.state === 'En local');
    return (
       <Layout clean>
          <Main>
@@ -29,13 +30,15 @@ const MainScreen = ({ navigation }) => {
                   Ver mis reservas
                </Button>
             )}
-            <Button
-               type="main"
-               icon="silverware-variant"
-               onPress={() => navigation.navigate('menu')}
-            >
-               Estoy en el local
-            </Button>
+            {admit && (
+               <Button
+                  type="main"
+                  icon="silverware-variant"
+                  onPress={() => navigation.navigate('menu')}
+               >
+                  Estoy en el local
+               </Button>
+            )}
          </Main>
       </Layout>
    );

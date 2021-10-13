@@ -17,6 +17,7 @@ import Button from '../../../components/ui/Button/Button';
 
 const ReservationListScreen = ({ navigation }) => {
    const { reservations, removeReservation } = useContext(ReservationsContext);
+
    let { monthsNames } = require('../../../../data/constants.json');
 
    const onDeletePressed = (reservationIndex) => {
@@ -33,26 +34,29 @@ const ReservationListScreen = ({ navigation }) => {
       ) : (
          <ReservationList
             data={reservations}
-            renderItem={({ item, index }) => {
+            renderItem={({ item }) => {
+               const dateParsed = new Date(item.dateAndHour);
                return (
                   <FadeInView>
                      <ReservationCardWhole elevation={3}>
                         <ReservationCardContent>
                            <ReservationText>
-                              {item.selectedDate.day +
+                              {dateParsed.getDate('es-AR', {
+                                 day: '2-digit',
+                              }) +
                                  ' de ' +
-                                 monthsNames[item.selectedDate.month - 1] +
+                                 monthsNames[dateParsed.getMonth() - 1] +
                                  ' de ' +
-                                 item.selectedDate.year +
+                                 dateParsed.getFullYear() +
                                  ' a las ' +
-                                 item.selectedTime +
+                                 dateParsed.getHours() +
                                  ' horas para ' +
-                                 item.selectedCapacity +
+                                 item.qtyPersons +
                                  ' personas'}
                            </ReservationText>
                            <Button
                               type="large"
-                              onPress={() => onDeletePressed(index)}
+                              onPress={() => onDeletePressed(item._id)}
                               variation={{
                                  width: '35%',
                                  backgroundColor: colors.ui.delete,
@@ -66,9 +70,7 @@ const ReservationListScreen = ({ navigation }) => {
                );
             }}
             keyExtractor={(item) =>
-               item.selectedCapacity.toString() +
-               item.selectedTime.toString() +
-               item.selectedDate.day.toString()
+               item.qtyPersons.toString() + item.dateAndHour.toString()
             }
          />
       );

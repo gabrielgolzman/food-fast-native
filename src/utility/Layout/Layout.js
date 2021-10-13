@@ -3,6 +3,7 @@ import { Provider } from 'react-native-paper';
 
 import { Container, HeaderImage, Main } from './Layout.styles';
 import { AuthenticationContext } from '../../services/authentication/authentication.context';
+import { OrdersContext } from '../../services/orders/orders.context';
 
 import Button from '../../components/ui/Button/Button';
 import DialogModal from '../../components/ui/DialogModal/DialogModal';
@@ -10,8 +11,12 @@ import DialogModal from '../../components/ui/DialogModal/DialogModal';
 const Layout = ({ children, clean }) => {
    const [visible, setVisible] = useState(false);
    const { onLogout } = useContext(AuthenticationContext);
+   const { askForHelp } = useContext(OrdersContext);
 
-   const showDialog = () => setVisible(true);
+   const showDialog = () => {
+      askForHelp(23); //hardcoded for now
+      setVisible(true);
+   };
 
    const hideDialog = () => setVisible(false);
 
