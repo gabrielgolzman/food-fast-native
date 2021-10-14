@@ -13,7 +13,7 @@ export const AccountBackground = styled.ImageBackground.attrs({
 
 export const AccountContainer = styled.View`
    background-color: rgba(255, 255, 255, 0.75);
-   margin: ${(props) => props.theme.space[2]};
+   margin: ${(props) => props.theme.space[0]};
    padding: ${(props) => props.theme.space[4]};
    align-items: center;
 `;

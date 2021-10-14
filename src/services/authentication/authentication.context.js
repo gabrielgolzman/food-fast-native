@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import * as firebase from 'firebase';
+import axios from 'axios';
 
 import { loginRequest, registerRequest } from './authentication.service';
 
@@ -9,6 +10,7 @@ export const AuthenticationContextProvider = ({ children }) => {
    const [isLoading, setIsLoading] = useState(false);
    const [user, setUser] = useState(null);
    const [error, setError] = useState(null);
+   const [client, setClient] = useState(null);
 
    const onLogin = (email, password) => {
       setIsLoading(true);
@@ -16,6 +18,10 @@ export const AuthenticationContextProvider = ({ children }) => {
          .then((u) => {
             setUser(u);
             setIsLoading(false);
+            axios
+               .get(`http://192.168.0.6:5000/clients/${email}`)
+               .then((res) => setClient(res.data))
+               .catch((error) => console.log(error));
          })
          .catch((e) => {
             setIsLoading(false);
@@ -32,7 +38,15 @@ export const AuthenticationContextProvider = ({ children }) => {
       }
    });
 
-   const onRegister = (email, password, repeatedPassword) => {
+   const onRegister = (
+      email,
+      password,
+      repeatedPassword,
+      name,
+      DNI,
+      telephone,
+      dateOfBirth
+   ) => {
       if (password !== repeatedPassword) {
          setError('Error: los passwords no coinciden');
          return;
@@ -42,7 +56,18 @@ export const AuthenticationContextProvider = ({ children }) => {
          .then((u) => {
             setUser(u);
             setIsLoading(false);
+            axios
+               .post('http://192.168.0.6:5000/clients', {
+                  email,
+                  DNI,
+                  name,
+                  telephone,
+                  dateOfBirth,
+               })
+               .then((res) => setClient(res.data))
+               .catch((error) => console.log(error));
          })
+
          .catch((e) => {
             setIsLoading(false);
             setError(e.toString());
@@ -60,6 +85,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             isAuthenticated: !!user,
             user,
             isLoading,
+            client,
             error,
             onLogin,
             onRegister,

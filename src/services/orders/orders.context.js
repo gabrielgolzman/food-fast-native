@@ -1,6 +1,7 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { AuthenticationContext } from '../authentication/authentication.context';
 export const OrdersContext = createContext();
 
 export const OrdersContextProvider = ({ children }) => {
@@ -8,15 +9,20 @@ export const OrdersContextProvider = ({ children }) => {
    const [total, setTotal] = useState(0);
    const [invoices, setInvoices] = useState([]);
    const [cooking, setCooking] = useState(false);
+   const { client } = useContext(AuthenticationContext);
 
    useEffect(() => {
+      let unmounted = false;
       axios
-         .get('http://192.168.1.42:5000/invoices')
+         .get('http://192.168.0.6:5000/invoices')
          .then((res) => {
-            setInvoices(res.data);
+            if (!unmounted) setInvoices(res.data);
          })
          .catch((error) => console.log(error));
-   });
+      return () => {
+         unmounted = true;
+      };
+   }, [invoices]);
 
    const addOrder = (newOrder) => {
       setOrders([...orders, newOrder]);
@@ -29,7 +35,7 @@ export const OrdersContextProvider = ({ children }) => {
 
    const askForHelp = (number) => {
       axios
-         .patch(`http://192.168.1.42:5000/tables/help/${number}`)
+         .patch(`http://192.168.0.6:5000/tables/help/${number}`)
          .then((res) => {
             console.log(res);
          })
@@ -51,9 +57,10 @@ export const OrdersContextProvider = ({ children }) => {
          invoiceNumber: total + 'BR-F',
          total,
          details: ordersMapped,
+         client: client[0]._id,
       };
       try {
-         await axios.post('http://192.168.1.42:5000/invoices', invoice);
+         await axios.post('http://192.168.0.6:5000/invoices', invoice);
       } catch (error) {
          console.log(error);
       }

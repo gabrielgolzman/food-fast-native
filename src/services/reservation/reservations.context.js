@@ -7,21 +7,25 @@ export const ReservationsContextProvider = ({ children }) => {
    const [reservations, setReservations] = useState([]);
 
    useEffect(() => {
+      let unmounted = false;
       axios
-         .get('http://192.168.1.42:5000/reservations')
+         .get('http://192.168.0.6:5000/reservations')
          .then((res) => {
-            setReservations(res.data);
+            if (!unmounted) setReservations(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
+      return () => {
+         unmounted = true;
+      };
    }, [reservations]);
 
    const addReservation = (newReservation) => {
       console.log(newReservation);
       setReservations([...reservations, newReservation]);
       axios
-         .post('http://192.168.1.42:5000/reservations', newReservation)
+         .post('http://192.168.0.6:5000/reservations', newReservation)
          .then((res) => {
             console.log(res);
          })
@@ -33,7 +37,7 @@ export const ReservationsContextProvider = ({ children }) => {
    const removeReservation = (reservationIndex) => {
       axios
          .patch(
-            `http://192.168.1.42:5000/reservations/delete/${reservationIndex}`
+            `http://192.168.0.6:5000/reservations/delete/${reservationIndex}`
          )
          .then((res) => {
             console.log(res);

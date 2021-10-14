@@ -31,6 +31,7 @@ const SummaryScreen = ({ navigation }) => {
    } = useContext(OrdersContext);
    const [isEditing, setIsEditing] = useState(false);
    const [oneIsChecked, setOneIsChecked] = useState(false);
+   // const [clientId, setClientId] = useState('');
 
    const handleCheck = (id) => {
       setCheckbox(id);
