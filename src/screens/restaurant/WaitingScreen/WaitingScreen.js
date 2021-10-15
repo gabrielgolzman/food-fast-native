@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Provider } from 'react-native-paper';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -17,14 +17,14 @@ import DialogModal from '../../../components/ui/DialogModal/DialogModal';
 import { FadeInView } from '../../../utility/animations/FadeAnimation';
 
 const WaitingScreen = ({ navigation }) => {
-   const { invoices, cleanOrder } = useContext(OrdersContext);
+   const { cleanOrder, cooking } = useContext(OrdersContext);
    const [visible, setVisible] = useState(false);
 
    const showDialog = () => setVisible(true);
 
    const hideDialog = () => setVisible(false);
 
-   const message = !invoices[invoices.length - 1].isServed ? (
+   const message = cooking ? (
       <>
          <MaterialCommunityIcons
             name="chef-hat"

@@ -2,27 +2,34 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { AuthenticationContext } from '../authentication/authentication.context';
+import { useSockets } from '../socket/socket.context';
+import { EVENTS } from '../../config/events';
+
 export const OrdersContext = createContext();
 
 export const OrdersContextProvider = ({ children }) => {
    const [orders, setOrders] = useState([]);
    const [total, setTotal] = useState(0);
    const [invoices, setInvoices] = useState([]);
-   const [cooking, setCooking] = useState(false);
+   const [cooking, setCooking] = useState(true);
    const { client } = useContext(AuthenticationContext);
+   const { socket } = useSockets();
 
    useEffect(() => {
-      let unmounted = false;
       axios
          .get('http://192.168.0.6:5000/invoices')
          .then((res) => {
-            if (!unmounted) setInvoices(res.data);
+            setInvoices(res.data);
          })
          .catch((error) => console.log(error));
-      return () => {
-         unmounted = true;
-      };
-   }, [invoices]);
+   }, []);
+
+   useEffect(() => {
+      socket.on(EVENTS.SERVER.TOGGLE_SERVED, (value) => {
+         setCooking(!value);
+      });
+      return () => setCooking(!cooking);
+   }, [socket, invoices]);
 
    const addOrder = (newOrder) => {
       setOrders([...orders, newOrder]);
@@ -59,11 +66,14 @@ export const OrdersContextProvider = ({ children }) => {
          details: ordersMapped,
          client: client[0]._id,
       };
-      try {
-         await axios.post('http://192.168.0.6:5000/invoices', invoice);
-      } catch (error) {
-         console.log(error);
-      }
+
+      axios
+         .post('http://192.168.0.6:5000/invoices', invoice)
+         .then((res) => {
+            setInvoices([...invoices, res.data.invoice]);
+            socket.emit(EVENTS.CLIENT.NEW_INVOICE, res.data.invoice);
+         })
+         .catch((error) => console.log(error));
    };
 
    const toggleCooking = () => {
