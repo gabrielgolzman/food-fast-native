@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { theme } from './src/infrastructure/theme';
 import { MainNavigation } from './src/infrastructure/navigation';
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
+import { SocketContextProvider } from './src/services/socket/socket.context';
 
 import SafeArea from './src/utility/SafeArea';
 
@@ -27,12 +28,14 @@ if (!firebase.apps.length) {
 export default function App() {
    return (
       <ThemeProvider theme={theme}>
-         <AuthenticationContextProvider>
-            <SafeArea>
-               <MainNavigation />
-               <StatusBar style="auto" />
-            </SafeArea>
-         </AuthenticationContextProvider>
+         <SocketContextProvider>
+            <AuthenticationContextProvider>
+               <SafeArea>
+                  <MainNavigation />
+                  <StatusBar style="auto" />
+               </SafeArea>
+            </AuthenticationContextProvider>
+         </SocketContextProvider>
       </ThemeProvider>
    );
 }

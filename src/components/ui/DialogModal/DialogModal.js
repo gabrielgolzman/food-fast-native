@@ -22,7 +22,6 @@ const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
          tableNumber: 23,
          state: 'Realizada',
       };
-      console.log(res);
       addReservation(res);
       nav.navigate('reservation-resume', { reservationString });
    };
