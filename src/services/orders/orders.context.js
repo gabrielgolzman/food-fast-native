@@ -44,7 +44,7 @@ export const OrdersContextProvider = ({ children }) => {
       axios
          .patch(`http://192.168.0.6:5000/tables/help/${number}`)
          .then((res) => {
-            console.log(res);
+            socket.emit(EVENTS.CLIENT.HELP_ASKED, number);
          })
          .catch((error) => {
             console.log(error);

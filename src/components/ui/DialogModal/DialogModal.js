@@ -14,7 +14,7 @@ const DialogModal = ({ currentRes, visible, hideDialog, type, nav }) => {
       const res = {
          dateAndHour: new Date(
             currentRes.selectedDate.year,
-            currentRes.selectedDate.month,
+            currentRes.selectedDate.month - 1,
             currentRes.selectedDate.day,
             currentRes.selectedTime
          ),

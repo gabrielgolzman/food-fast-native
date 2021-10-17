@@ -10,7 +10,7 @@ import Button from '../../components/ui/Button/Button';
 const MainScreen = ({ navigation }) => {
    const { reservations, admit } = useContext(ReservationsContext);
    return (
-      <Layout clean>
+      <Layout nav={navigation} clean>
          <Main>
             <Button
                type="main"

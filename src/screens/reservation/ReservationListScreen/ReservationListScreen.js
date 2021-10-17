@@ -21,7 +21,6 @@ const ReservationListScreen = ({ navigation }) => {
    let { monthsNames } = require('../../../../data/constants.json');
 
    const onDeletePressed = (reservationIndex) => {
-      console.log(reservationIndex);
       removeReservation(reservationIndex);
    };
 

@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Provider } from 'react-native-paper';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import {
-   SettingsButton,
    BackgroundCover,
    HeaderContainer,
    MainContainer,
@@ -61,12 +60,6 @@ const WaitingScreen = ({ navigation }) => {
       <Provider>
          <BackgroundCover>
             <HeaderContainer>
-               <SettingsButton
-                  onPress={() => navigation.navigate('settings')}
-               />
-               {/* <Button type="icon" icon="bell-ring" onPress={showDialog}>
-                  Solicitar ayuda al personal
-               </Button> */}
                {visible && (
                   <DialogModal visible={visible} hideDialog={hideDialog} />
                )}

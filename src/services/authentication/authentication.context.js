@@ -29,10 +29,23 @@ export const AuthenticationContextProvider = ({ children }) => {
          });
    };
 
+   const onClientChanged = (id, modifiedClient) => {
+      console.log(modifiedClient);
+      axios
+         .patch(`http://192.168.0.6:5000/clients/${id}`, modifiedClient)
+         .then((res) => setClient(res.data.modifiedClient))
+         .catch((error) => console.log(error));
+   };
+
    firebase.auth().onAuthStateChanged((usr) => {
       if (usr) {
          setUser(usr);
          setIsLoading(false);
+         if (!client)
+            axios
+               .get(`http://192.168.0.6:5000/clients/${usr.email}`)
+               .then((res) => setClient(res.data))
+               .catch((error) => console.log(error));
       } else {
          setIsLoading(false);
       }
@@ -90,6 +103,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             onLogin,
             onRegister,
             onLogout,
+            onClientChanged,
          }}
       >
          {children}

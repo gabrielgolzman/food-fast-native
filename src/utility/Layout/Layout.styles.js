@@ -19,6 +19,13 @@ export const HeaderImage = styled.ImageBackground.attrs({
    justify-content: space-between;
 `;
 
+export const TopButtonsContainer = styled.View`
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+`;
+
 export const SettingsButton = styled(IconButton).attrs((props) => ({
    icon: 'cog',
    size: 35,
