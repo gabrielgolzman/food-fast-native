@@ -40,7 +40,7 @@ const SettingsScreen = ({ navigation }) => {
       setTelephone('');
       setDateOfBirth(new Date(1598051730000));
       setDNI('');
-      navigation.navigate('menu');
+      navigation.navigate('main');
    };
 
    const passwordChangeRequested = () => {
