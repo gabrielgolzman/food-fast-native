@@ -19,7 +19,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             setUser(u);
             setIsLoading(false);
             axios
-               .get(`http://192.168.1.42:5000/clients/${email}`)
+               .get(`http://192.168.0.6:5000/clients/${email}`)
                .then((res) => setClient(res.data))
                .catch((error) => console.log(error));
          })
@@ -31,7 +31,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
    const onClientChanged = (id, modifiedClient) => {
       axios
-         .patch(`http://192.168.1.42:5000/clients/${id}`, modifiedClient)
+         .patch(`http://192.168.0.6:5000/clients/${id}`, modifiedClient)
          .then((res) => {
             console.log(res.data.modifiedClient);
             setClient({ ...res.data.modifiedClient, modifiedClient });
@@ -45,7 +45,7 @@ export const AuthenticationContextProvider = ({ children }) => {
          setIsLoading(false);
          if (!client)
             axios
-               .get(`http://192.168.1.42:5000/clients/${usr.email}`)
+               .get(`http://192.168.0.6:5000/clients/${usr.email}`)
                .then((res) => setClient(res.data))
                .catch((error) => console.log(error));
       } else {
@@ -72,7 +72,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             setUser(u);
             setIsLoading(false);
             axios
-               .post('http://192.168.1.42:5000/clients', {
+               .post('http://192.168.0.6:5000/clients', {
                   email,
                   DNI,
                   name,

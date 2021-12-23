@@ -17,7 +17,7 @@ export const OrdersContextProvider = ({ children }) => {
 
    useEffect(() => {
       axios
-         .get('http://192.168.1.42:5000/invoices')
+         .get('http://192.168.0.6:5000/invoices')
          .then((res) => {
             setInvoices(res.data);
          })
@@ -41,7 +41,7 @@ export const OrdersContextProvider = ({ children }) => {
 
    const askForHelp = (number) => {
       axios
-         .patch(`http://192.168.1.42:5000/tables/help/${number}`)
+         .patch(`http://192.168.0.6:5000/tables/help/${number}`)
          .then((res) => {
             socket.emit(EVENTS.CLIENT.HELP_ASKED, number);
          })
@@ -67,7 +67,7 @@ export const OrdersContextProvider = ({ children }) => {
       };
 
       axios
-         .post('http://192.168.1.42:5000/invoices', invoice)
+         .post('http://192.168.0.6:5000/invoices', invoice)
          .then((res) => {
             setInvoices([...invoices, res.data.invoice]);
             setCooking(true);
